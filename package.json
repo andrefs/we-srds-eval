@@ -1,0 +1,29 @@
+{
+  "devDependencies": {
+    "@types/node": "22.13.1",
+    "typescript": "5.7.3",
+    "vitest": "3.0.5"
+  },
+  "name": "we-srds-eval",
+  "version": "0.0.1",
+  "description": "Calculate the correlation between cosine similarity of word embeddings and human judgements of semantic relations.",
+  "main": "index.js",
+  "dependencies": {
+    "@stdlib/stats-pcorrtest": "0.2.2",
+    "punuy-datasets": "11.1.2",
+    "we-cos-sim": "file:../we-cos-sim"
+  },
+  "scripts": {
+    "test": "vitest"
+  },
+  "keywords": [
+    "word embeddings",
+    "cosine similarity",
+    "semantic relations",
+    "semantic similarity",
+    "semantic relatedness",
+    "correlation"
+  ],
+  "author": "André Santos",
+  "license": "ISC"
+}
