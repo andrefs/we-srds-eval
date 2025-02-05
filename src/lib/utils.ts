@@ -7,13 +7,13 @@
  * @returns An array of n random elements from arr
  */
 export function getRandom<T>(arr: T[], n: number): T[] {
-  const result = new Array(n);
   let len = arr.length;
   const taken = new Array(len);
 
   if (n > len) {
     n = len;
   }
+  const result = new Array(n);
 
   while (n--) {
     const x = Math.floor(Math.random() * len);

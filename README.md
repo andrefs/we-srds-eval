@@ -23,7 +23,7 @@ npm install
 To process all datasets and calculate correlations, execute the following command:
 
 ```bash
-node src/bin/proc-datasets.ts
+tsx src/bin/proc-datasets.ts
 ```
 
 This will output the correlation results for each dataset.

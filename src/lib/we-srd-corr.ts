@@ -42,7 +42,7 @@ export function getPairsFromDataset(ds: Partition) {
   const pairs = [];
   for (const { term1, term2, value, values } of ds.data) {
     let score = value;
-    if (!value) {
+    if (value === undefined || value === null) {
       const vals = values!.filter(v => v !== undefined && v !== null) as number[];
       if (vals.length === 0) {
         continue
@@ -57,6 +57,9 @@ export function getPairsFromDataset(ds: Partition) {
 export async function procDataset(ds: Partition, cosSimFn: CosSimFnType) {
   const pairs = getPairsFromDataset(ds);
   const pairsWithCosSim = await calcPairsCosSim(pairs, 30, cosSimFn);
+  if (pairsWithCosSim.length < 10) {
+    return { corr: null, pairCount: pairsWithCosSim.length };
+  }
   const { pcorr } = await calcPairsCorr(pairsWithCosSim);
   return { corr: pcorr, pairCount: pairsWithCosSim.length };
 }
