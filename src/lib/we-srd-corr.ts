@@ -15,18 +15,23 @@ export type CosSimFnType = (term1: string, term2: string) => Promise<number | nu
 
 
 export async function calcPairsCosSim(
-  pairs: Pair[],
+  allPairs: Pair[],
   sampleSize: number,
   cosSimFn: CosSimFnType
 ) {
   const res = [];
-  const sample = getRandom(pairs, sampleSize);
-  for (const { term1, term2, score } of sample) {
-    const cosSim = await cosSimFn(term1, term2);
-    if (cosSim === null) {
-      continue;
+  const pairs = getRandom(allPairs, 1000);
+  let i = 0;
+  while (res.length < sampleSize && i < pairs.length) {
+    const p = pairs[i++];
+    if (p) {
+      const { term1, term2, score } = p;
+      const cosSim = await cosSimFn(term1, term2);
+      if (cosSim === null) {
+        continue;
+      }
+      res.push({ term1, term2, score, cosSim });
     }
-    res.push({ term1, term2, score, cosSim });
   }
   return res;
 }
