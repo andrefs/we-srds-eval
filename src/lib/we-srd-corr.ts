@@ -71,11 +71,12 @@ export async function procDataset(ds: Partition, cosSimFn: CosSimFnType) {
 
 export async function procAllDatasets() {
   console.warn('Processing all datasets');
-  const cosSimFn = await buildFTLangFn('en', true)
+  const cosSimEnFn = await buildFTLangFn('en', true);
+  const cosSimPtFn = await buildFTLangFn('pt', true);
   const res = [];
   for (const [dsName, ds] of Object.entries(datasets)) {
     console.warn(`Processing ${dsName}`);
-    const { corr, pairCount } = await procDataset(ds, cosSimFn);
+    const { corr, pairCount } = await procDataset(ds, ds.language === "pt" ? cosSimPtFn : cosSimEnFn);
     res.push({ dsName, corr, pairCount });
   }
   return res;
