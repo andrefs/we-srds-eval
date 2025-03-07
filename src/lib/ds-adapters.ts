@@ -101,6 +101,7 @@ export const umnsrs_rel = DsPartition.fromDataset(umnsrs, "rel");
 export const umnsrs_sim = DsPartition.fromDataset(umnsrs, "sim");
 export const umnsrsMod_rel = DsPartition.fromDataset(umnsrsMod, "rel");
 export const umnsrsMod_sim = DsPartition.fromDataset(umnsrsMod, "sim");
+export const word19k_test = DsPartition.fromDataset(word19k, "test");
 export const word19k_train = DsPartition.fromDataset(word19k, "train");
 export const wp300_wp = DsPartition.fromDataset(wp300, "wp");
 export const ws353_combined = DsPartition.fromDataset(ws353, "combined");
